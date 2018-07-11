@@ -21,7 +21,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 		{
 			if (newhighscore != "undefined")
 			{
-				var siteUrl = parent.window.location.href;
+				var siteUrl = parent.document.getElementById("html5smfGameUrl");
 				var sessid = document.getElementById("gameSmfToken");
 				var gameForm = document.getElementById("gameForm");
 				var vargamescore = document.createElement("INPUT");
@@ -37,7 +37,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 				vargamesessid.value = sessid.value;
 				gameForm.appendChild(vargamesessid);
 				setTimeout(gameForm.submit(), 1000);
-				setTimeout(function(){ parent.window.location = siteUrl.split('#')[0]; }, 3000);
+				setTimeout(function(){ parent.window.location = siteUrl.split('#')[0] + "sa=highscore;#commentform3"; }, 3000);
 				return true;
 			}
 			else
@@ -51,7 +51,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 		{
 			if (newhighscore != "undefined")
 			{
-				var siteUrl = parent.window.location.href;
+				var siteUrl = parent.document.getElementById("html5smfGameUrl");
 				var sessid = parent.document.getElementById("gameSmfToken");
 				var gameForm = parent.document.getElementById("gameForm");
 				var vargamescore = parent.document.createElement("INPUT");
@@ -67,7 +67,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 				vargamesessid.value = sessid.value;
 				gameForm.appendChild(vargamesessid);
 				gameForm.submit();
-				setTimeout(function(){ parent.window.location = siteUrl.split('#')[0]; }, 3000);
+				setTimeout(function(){ parent.window.location = siteUrl.split('#')[0] + "sa=highscore;#commentform3"; }, 3000);
 				// throw new Error("<<< SAVING SCORE >>>");
 				return true;
 			}
@@ -92,7 +92,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 		var post_data = {'gname':gname, 'gscore':gscore};
 		//send data using jQuery $.post()
 		$.post(newUrl, post_data, function(data) {
-			console.log("Saving score for Space Rocks");
+			console.log("Saving score for Infinite Mario Bros");
 			setTimeout(function(){ parent.window.location = siteUrl.split('#')[0]; }, 3000);
 		}).fail(function(err) {
 		});
