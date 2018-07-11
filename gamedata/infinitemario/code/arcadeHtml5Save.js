@@ -94,7 +94,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem, gamename="")
 		var post_data = {'gname':gname, 'gscore':gscore};
 		//send data using jQuery $.post()
 		$.post(newUrl, post_data, function(data) {
-			console.log("Saving score for Space Rocks");
+			console.log("Saving score for " + gname);
 			setTimeout(function(){ parent.window.location = siteUrl.split('#')[0]; }, 3000);
 		}).fail(function(err) {
 		});
