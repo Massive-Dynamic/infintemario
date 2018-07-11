@@ -94,9 +94,10 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 		// IBP save system
 		var gscore = newhighscore;
 		var gname = "marioinfinite";
-		var post_data = {'ganme':gname, 'gscore':gscore};
+		
+		var post_data = {'gname':gname, 'gscore':gscore};
 		//send data using jQuery $.post()
-		$.post('/index.php?act=Arcade&do=newscore', post_data, function(data) {
+		$.post('/index.php?act=Arcade&do=newscore', {data:  JSON.stringify(post_data)}, function(data) {
 			console.log("Saving score for Infinite Mario Bros");
 		}).fail(function(err) {
 		});
