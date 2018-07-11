@@ -1,11 +1,11 @@
 /*
- * Infinite Mario Bros
+ * Common save file
  *
- * @SMF Arcade: html5 v2 save type
+ * @SMF Arcade: html5 save type
  * @PHP-Quick-Arcade: ibp save type
  *
  */
-function saveHtml5GameSmf(newhighscore, saveSystem)
+function saveHtml5GameSmf(newhighscore, saveSystem, gamename="")
 {
 	var checkSessid = parent.document.getElementById("gameSmfToken") ? parent.document.getElementById("gameSmfToken") : (document.getElementById("gameSmfToken") ? document.getElementById("gameSmfToken") : "");
 	window.myScoreTrig = typeof window.myScoreTrig == "undefined" ? 0 : window.myScoreTrig;
@@ -19,7 +19,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 		var gameSmfFullscreen = document.getElementById("gameSmfFullscreen") != undefined ? document.getElementById("gameSmfFullscreen").value : 0;
 		if (parseInt(gameSmfFullscreen) == 1)
 		{
-			if (newhighscore != "undefined")
+			if (typeof newhighscore != "undefined")
 			{
 				var siteUrl = parent.document.getElementById("html5smfGameUrl");
 				var sessid = document.getElementById("gameSmfToken");
@@ -49,7 +49,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 		}
 		else
 		{
-			if (newhighscore != "undefined")
+			if (typeof newhighscore != "undefined")
 			{
 				var siteUrl = parent.document.getElementById("html5smfGameUrl");
 				var sessid = parent.document.getElementById("gameSmfToken");
@@ -68,7 +68,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 				gameForm.appendChild(vargamesessid);
 				gameForm.submit();
 				setTimeout(function(){ parent.window.location = siteUrl.split('#')[0] + "sa=highscore;#commentform3"; }, 3000);
-				// throw new Error("<<< SAVING SCORE >>>");
+				document.location.reload(true);
 				return true;
 			}
 			else
@@ -84,15 +84,17 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 	else
 	{
 		// IBP save system
+		var gameFrameSrc = typeof window.frameElement.src != "undefined" ? window.frameElement.src : (parent.document.getElementById("game_name") ? parent.document.getElementById("game_name").value : "");
+		var gnameQuery = gameFrameSrc.substr(gameFrameSrc.lastIndexOf('/') + 1);
 		var gscore = newhighscore;
-		var gname = "infinitemario";
+		var gname = gnameQuery != "" ? gnameQuery : gamename;
 		var siteUrl = parent.window.location.href;
 		var n = siteUrl.lastIndexOf("/");
 		var newUrl = siteUrl.slice(0, n) + "/index.php?act=Arcade&do=newscore";
 		var post_data = {'gname':gname, 'gscore':gscore};
 		//send data using jQuery $.post()
 		$.post(newUrl, post_data, function(data) {
-			console.log("Saving score for Infinite Mario Bros");
+			console.log("Saving score for Space Rocks");
 			setTimeout(function(){ parent.window.location = siteUrl.split('#')[0]; }, 3000);
 		}).fail(function(err) {
 		});
