@@ -21,6 +21,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 		{
 			if (newhighscore != "undefined")
 			{
+				var siteUrl = parent.window.location.href;
 				var sessid = document.getElementById("gameSmfToken");
 				var gameForm = document.getElementById("gameForm");
 				var vargamescore = document.createElement("INPUT");
@@ -36,7 +37,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 				vargamesessid.value = sessid.value;
 				gameForm.appendChild(vargamesessid);
 				setTimeout(gameForm.submit(), 1000);
-				// setTimeout(function(){ window.location = gameForm.action; }, 3000);
+				setTimeout(function(){ parent.window.location = siteUrl.split('#')[0]; }, 3000);
 				return true;
 			}
 			else
@@ -50,6 +51,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 		{
 			if (newhighscore != "undefined")
 			{
+				var siteUrl = parent.window.location.href;
 				var sessid = parent.document.getElementById("gameSmfToken");
 				var gameForm = parent.document.getElementById("gameForm");
 				var vargamescore = parent.document.createElement("INPUT");
@@ -75,7 +77,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 					myArcadeWindowX.close();
 				}
 
-				// setTimeout(function(){ window.parent.location = gameForm.action; }, 3000);
+				setTimeout(function(){ parent.window.location = siteUrl.split('#')[0]; }, 3000);
 				// throw new Error("<<< SAVING SCORE >>>");
 				return true;
 			}
@@ -94,11 +96,14 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 		// IBP save system
 		var gscore = newhighscore;
 		var gname = "marioinfinite";
-		
+		var siteUrl = parent.window.location.href;
+		var n = siteUrl.lastIndexOf("/");
+		var newUrl = siteUrl.slice(0, n) + "/index.php?act=Arcade&do=newscore";
 		var post_data = {'gname':gname, 'gscore':gscore};
 		//send data using jQuery $.post()
-		$.post('index.php?act=Arcade&do=newscore', post_data, function(data) {
-			console.log("Saving score for Infinite Mario Bros");
+		$.post(newUrl, post_data, function(data) {
+			console.log("Saving score for Space Rocks");
+			setTimeout(function(){ parent.window.location = siteUrl.split('#')[0]; }, 3000);
 		}).fail(function(err) {
 		});
 	}
