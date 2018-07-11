@@ -1,7 +1,7 @@
 /*
  * Infinite Mario Bros
  *
- * @SMF Arcade: html5 save type
+ * @SMF Arcade: html5 v2 save type
  * @PHP-Quick-Arcade: ibp save type
  *
  */
@@ -96,7 +96,8 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 		var gname = "marioinfinite";
 		var post_data = {'ganme':gname, 'gscore':gscore};
 		//send data using jQuery $.post()
-		$.post('/index.php?act=Arcade;do=newscore', post_data, function(data) {
+		$.post('/index.php?act=Arcade&do=newscore', post_data, function(data) {
+			console.log("Saving score for Infinite Mario Bros");
 		}).fail(function(err) {
 		});
 	}
