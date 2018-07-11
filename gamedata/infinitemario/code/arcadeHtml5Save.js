@@ -67,16 +67,6 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 				vargamesessid.value = sessid.value;
 				gameForm.appendChild(vargamesessid);
 				gameForm.submit();
-
-				// this popup trick should force the child window to close even if it is blocked
-				var myArcadeWindowX = window.open();
-				if(myArcadeWindowX && !myArcadeWindowX.closed)
-				{
-					myArcadeWindowX.document.open();
-					myArcadeWindowX.document.close();
-					myArcadeWindowX.close();
-				}
-
 				setTimeout(function(){ parent.window.location = siteUrl.split('#')[0]; }, 3000);
 				// throw new Error("<<< SAVING SCORE >>>");
 				return true;
@@ -95,7 +85,7 @@ function saveHtml5GameSmf(newhighscore, saveSystem)
 	{
 		// IBP save system
 		var gscore = newhighscore;
-		var gname = "marioinfinite";
+		var gname = "infinitemario";
 		var siteUrl = parent.window.location.href;
 		var n = siteUrl.lastIndexOf("/");
 		var newUrl = siteUrl.slice(0, n) + "/index.php?act=Arcade&do=newscore";
