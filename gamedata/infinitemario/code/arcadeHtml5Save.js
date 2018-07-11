@@ -8,6 +8,12 @@
 function saveHtml5GameSmf(newhighscore, saveSystem)
 {
 	var checkSessid = parent.document.getElementById("gameSmfToken") ? parent.document.getElementById("gameSmfToken") : (document.getElementById("gameSmfToken") ? document.getElementById("gameSmfToken") : "");
+	window.myScoreTrig = typeof window.myScoreTrig == "undefined" ? 0 : window.myScoreTrig;
+
+	if (window.myScoreTrig == 1)
+		return false;
+
+	window.myScoreTrig = 1;
 	if (saveSystem == "smfhtml5" && checkSessid != "")
 	{
 		var gameSmfFullscreen = document.getElementById("gameSmfFullscreen") != undefined ? document.getElementById("gameSmfFullscreen").value : 0;
